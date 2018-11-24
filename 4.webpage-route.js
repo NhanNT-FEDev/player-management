@@ -38,30 +38,54 @@ const onPlayersListRoute = function(req, res) {
     `
           <html>
             <head>
-                <meta charset='utf-8'/>
-                <title>My first Nodejs Web</title>
+              <meta charset='utf-8'/>
+              <title>My first Nodejs Web</title>
     
             </head>
             <body>
-                <h1>List Player</h1>
-                <table border="1" cellpadding ="10" cellspacing="5">
+              <a href ="/"> Trang Chủ</a>
+              <h1>List Player</h1>
+              <table border="1" cellpadding ="20" cellspacing="5">
+                <th>Name</th>
+                <th>Age</th>
 `
   );
-  res.write(`
-                    <tr>
-                        <td>No data</td>
-                    </tr>
-                `);
+
+  if (!PLAYERS.length) {
+    res.write(`
+                <tr>
+                  <td>No data</td>
+                </tr>
+    `);
+  } else {
+    for (let mem of PLAYERS) {
+      res.write(`
+                <tr>
+                  <td>${mem.name}</td>
+                  <td>${mem.age}</td>
+                </tr>
+      `);
+    }
+  }
+
   res.write(
     `
-                </table>
-            <a href ="/"> Trang Chủ</a>
+              </table>
             </body>
             </html>
     `,
-
     "utf-8"
   ); //utf-8
+};
+
+//Create Object
+// KEY => VALUE
+// Có thể xem như 1 dictionary route.
+// Sau này sẽ configuration trong đây.
+
+const HANDLERS = {
+  "GET /": onDefaultRoute,
+  "GET /players": onPlayersListRoute
 };
 
 http
@@ -76,13 +100,16 @@ http
 
     console.log({ method, url });
 
-    let handler; // request handler
+    // let handler; // request handler
 
-    if (method === "GET" && url === "/") {
-      handler = onDefaultRoute;
-    } else if (method === "GET" && url === "/players") {
-      handler = onPlayersListRoute;
-    }
+    // if (method === "GET" && url === "/") {
+    //   handler = onDefaultRoute;
+    // } else if (method === "GET" && url === "/players") {
+    //   handler = onPlayersListRoute;
+    // }
+
+    const route = `${method} ${url}`;
+    const handler = HANDLERS[route];
 
     if (!handler) {
       res.writeHead(404);
