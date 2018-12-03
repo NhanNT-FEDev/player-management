@@ -25,3 +25,9 @@
  *
  *
  */
+
+ /**
+  * File    = Module
+  * modeule = exports(object)
+  * 
+  */
