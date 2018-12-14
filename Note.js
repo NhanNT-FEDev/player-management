@@ -31,3 +31,12 @@
   * modeule = exports(object)
   * 
   */
+/**
+ * Object Assign: Gọp 2 Object. // [ES5]
+ * Object spread operator [...] [ES6]
+ * 
+ * for of: duyet qua property(key) cua object
+ * for in: duyet qa index cua array
+ * 
+ * 
+ */

@@ -1,0 +1,40 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>NodeJS class members</title>
+</head>
+
+<body>
+    <h2>Thông tin cá nhân: {{name}}</h2>
+    <form>
+        <label for="txtName">Họ tên</label><br>
+        <input type="text" value="{{name}}" name="name" id="txtName"><br>
+        <br>
+        <label for="txtAge">Tuổi</label><br>
+        <input type="text" value="{{age}}" name="age" id="txtAge"><br>
+        <br>
+        <label for="txtAddr">Địa chỉ</label><br>
+        <textarea name="address" id="txtAddr">{{address}}</textarea><br>
+        <br>
+        <label for="cbGrad">Đã tốt nghiệp</label>
+        <input type="checkbox" value="graduated" {{isGraduated}} name="isGraduated" id="cbGrad"><br>
+        <br>
+        <label>Chuyên ngành</label><br>
+        {{faculty_list}}
+        <br>
+        <br>
+        <label>Sở thích</label><br>
+        {{hobby_list}}
+        <!-- <input type="radio" value="reading" name="hobbies"> Đọc sách<br>
+        <input type="radio" value="swimming" name="hobbies"> Bơi lội<br>
+        <input type="radio" value="football" name="hobbies"> Đá bóng<br>
+        <input type="radio" value="travelling" name="hobbies"> Du lịch<br>
+        <input type="radio" value="shopping" name="hobbies"> Mua sắm<br> -->
+        <br>
+        <input type="submit" value="Lưu thông tin" >
+        &nbsp;&nbsp;
+        <button type="reset">Làm lại</button>
+    </form>
+    <a href="/players">Xem danh sách lớp</a>
+</body>
+</html>

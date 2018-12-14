@@ -1,5 +1,5 @@
-const fs = require('fs')
 const http = require('http')
+const urlLib = require('url')
 // const util = require('util')
 
 // const errorExports = require('./handlers/error-handler');
@@ -25,10 +25,15 @@ process.on('unhandledRejection', onUnhandledError);
 const HANDLERS = {
     'GET /': players.onDefaultRoute,
     'GET /players': players.onPlayerListRoute,
+    'GET /player-detail-mat': players.onPlayerDetailRoute
+    
+
 }
 const requestListener = async function(req, res) {
     const { method, url } = req
-    const route = `${method} ${url}`
+    const pathname = urlLib.parse(url).pathname
+    const route = `${method} ${pathname}`
+    console.log({ route })
     const handler = HANDLERS[route]
 
     if (!handler) {
